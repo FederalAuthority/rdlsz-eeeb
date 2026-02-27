@@ -18,22 +18,18 @@
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; transition: all 0.3s ease; }
-        
         body { 
             margin: 0; background-color: var(--bg); color: var(--text); 
             font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6;
         }
 
-        /* Immersive Background */
         .full-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.95)), 
+            background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.95)), 
                         url('https://cdn.discordapp.com/attachments/1472741931258744854/1473043718549536988/image.png');
-            background-size: cover; background-position: center;
-            z-index: -1;
+            background-size: cover; background-position: center; z-index: -1;
         }
 
-        /* Navigation */
         nav {
             position: fixed; top: 0; width: 100%; padding: 25px 6%;
             background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(15px);
@@ -41,26 +37,21 @@
             border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 1000;
         }
         .logo { font-family: 'Space Grotesk'; font-size: 1.2rem; letter-spacing: 4px; color: var(--blue); text-transform: uppercase; }
-        nav a { color: var(--muted); text-decoration: none; font-weight: 700; margin-left: 25px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
-        nav a:hover { color: white; }
+        nav a { color: var(--muted); text-decoration: none; font-weight: 700; margin-left: 25px; font-size: 0.75rem; text-transform: uppercase; }
 
-        /* Layout */
         .wrapper { display: grid; grid-template-columns: 280px 1fr; max-width: 1300px; margin: 120px auto 50px; gap: 60px; padding: 0 40px; }
 
-        /* Sidebar Navigation */
         .sidebar { position: sticky; top: 120px; height: fit-content; }
-        .sidebar h4 { text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; color: var(--blue); margin-bottom: 25px; font-weight: 800; }
+        .sidebar h4 { text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; color: var(--blue); margin-bottom: 25px; }
         .sidebar ul { list-style: none; padding: 0; }
         .sidebar li { margin-bottom: 15px; }
         .sidebar a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
         .sidebar a:hover { color: var(--blue); padding-left: 8px; }
 
-        /* Content Area */
         .content section { margin-bottom: 80px; animation: slideUp 0.8s ease forwards; }
         h1 { font-family: 'Space Grotesk'; font-size: 3.5rem; margin-bottom: 10px; letter-spacing: -2px; }
-        h2 { font-family: 'Space Grotesk'; font-size: 1.8rem; color: var(--blue); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-top: 40px; text-transform: uppercase; letter-spacing: 1px; }
+        h2 { font-family: 'Space Grotesk'; font-size: 1.8rem; color: var(--blue); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-top: 40px; text-transform: uppercase; }
 
-        /* Rule Cards */
         .rule-item { 
             background: var(--card); backdrop-filter: blur(10px);
             padding: 30px; border-radius: 20px; 
@@ -75,19 +66,16 @@
         .p-ban { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
         .p-warn { background: rgba(245, 158, 11, 0.1); color: var(--warning); border: 1px solid var(--warning); }
 
-        /* Callout Box */
         .callout { 
             background: rgba(59, 130, 246, 0.1); padding: 30px; 
             border-radius: 20px; margin-bottom: 40px; border: 1px solid var(--blue);
-            backdrop-filter: blur(10px);
         }
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 1000px) {
-            .wrapper { grid-template-columns: 1fr; margin-top: 100px; }
+            .wrapper { grid-template-columns: 1fr; }
             .sidebar { display: none; }
-            h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -101,7 +89,7 @@
             <a href="index.html">Home</a>
             <a href="departments.html">Agencies</a>
             <a href="staff.html">Staff</a>
-            <a href="https://discord.gg/GtRJAxcUDR" style="color: var(--blue)">Join Discord</a>
+            <a href="https://discord.gg/GtRJAxcUDR">Join Discord</a>
         </div>
     </nav>
 
@@ -109,24 +97,36 @@
         <aside class="sidebar">
             <h4>Directives</h4>
             <ul>
+                <li><a href="#discord">Discord Guidelines</a></li>
                 <li><a href="#conduct">Zero Tolerance</a></li>
-                <li><a href="#general">General Conduct</a></li>
+                <li><a href="#general">General RP Rules</a></li>
                 <li><a href="#driving">Driving Standards</a></li>
-                <li><a href="#interaction">Interactions</a></li>
-                <li><a href="#discord">Discord Rules</a></li>
-                <li><a href="#appeals">Appeals</a></li>
+                <li><a href="#interaction">Interaction Rules</a></li>
+                <li><a href="#policies">Server Policies</a></li>
             </ul>
         </aside>
 
         <main class="content">
             <section id="intro">
-                <p style="color: var(--blue); font-weight: 800; letter-spacing: 5px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 0;">Code of Conduct</p>
                 <h1>RULES & <span style="color:var(--blue)">STANDARDS</span></h1>
-                <p style="color:var(--muted); font-size: 1.1rem; max-width: 700px;">Welcome to Tropical RP. Our community is built on mutual respect and high-standard roleplay. Staff maintain final authority on all rulings.</p>
+                <p style="color:var(--muted); font-size: 1.1rem; max-width: 700px;">Welcome to Tropical RP. Review these rules carefully; they are designed to maintain a positive and professional environment. Staff maintain final authority.</p>
                 
                 <div class="callout">
-                    <strong style="color: var(--blue); text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem;">Operational Support</strong><br>
-                    <p style="margin: 10px 0 0 0; font-size: 0.95rem;">Use <code>/calladmin</code> in-game for immediate assistance. Reports require valid video evidence to be actionable by Internal Affairs.</p>
+                    <strong>Operational Support</strong><br>
+                    <p style="margin: 10px 0 0 0; font-size: 0.95rem;">Use <code>/calladmin</code> in-game for assistance. Reports **must** have a video clip to be actionable.</p>
+                </div>
+            </section>
+
+            <section id="discord">
+                <h2>Discord Community Standards</h2>
+                <div class="rule-item">
+                    <p style="color: var(--muted); font-size: 0.95rem;">
+                        • Adhere to Discord's TOS.<br>
+                        • English is the only permitted language.<br>
+                        • Prohibited: NSFW, controversial topics, sexist, phobic, or racist remarks.<br>
+                        • Mature behavior is required; malicious behavior results in immediate bans.<br>
+                        • No self-promotion or unwanted DMs. No poaching (advertising other servers).
+                    </p>
                 </div>
             </section>
 
@@ -138,7 +138,15 @@
                         <span class="rule-title">Discrimination & Slurs</span>
                         <span class="punishment p-ban">Permanent Ban</span>
                     </div>
-                    <p style="color: var(--muted); font-size: 0.95rem;">Racism, homophobia, or hate speech of any kind is strictly prohibited. This includes slurs (Hard ER). Soft 'a' is permitted only within organic RP; excessive use is punishable.</p>
+                    <p>Racism of any kind is prohibited. Includes N-word (Hard ER). Soft 'a' is allowed in RP only. Excessive use results in permanent removal.</p>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-header">
+                        <span class="rule-title">Homophobic Remarks (F-Slur)</span>
+                        <span class="punishment p-ban">Permanent Ban</span>
+                    </div>
+                    <p>Remarks targeting the LGBTQIA+ community are disrespectful and strictly prohibited.</p>
                 </div>
 
                 <div class="rule-item">
@@ -146,52 +154,87 @@
                         <span class="rule-title">Out-of-Character Threats</span>
                         <span class="punishment p-ban">Permanent Ban</span>
                     </div>
-                    <p style="color: var(--muted); font-size: 0.95rem;">Includes DOX, DDOS, death threats, or encouraging self-harm. This policy extends to all server-affiliated platforms.</p>
+                    <p>Includes DDOS, DOX, Death Threats, or telling someone to "KYS". Applies to Game and Discord.</p>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-header">
+                        <span class="rule-title">Modding / Exploiting</span>
+                        <span class="punishment p-ban">Permanent Ban</span>
+                    </div>
+                    <p>Attempting to bypass anticheat or spawning explosive weapons without a proper role.</p>
                 </div>
             </section>
 
             <section id="general">
-                <h2>General Violations</h2>
+                <h2>In-Game Violations</h2>
 
                 <div class="rule-item">
                     <div class="rule-header">
-                        <span class="rule-title">RDM & VDM</span>
-                        <span class="punishment p-warn">Warn → Kick → Ban</span>
+                        <span class="rule-title">RDM / VDM</span>
+                        <span class="punishment p-warn">Warning → Kick → Ban</span>
                     </div>
-                    <p style="color: var(--muted); font-size: 0.95rem;">Executing players or using vehicles as weapons without valid RP escalation. Mass RDM (3+) results in an immediate permanent ban.</p>
+                    <p>Shooting or running over players without a valid RP reason. **Mass RDM/VDM (3+ people) is an immediate ban.**</p>
                 </div>
 
                 <div class="rule-item">
                     <div class="rule-header">
                         <span class="rule-title">Fail RP / Value of Life</span>
-                        <span class="punishment p-warn">Warning → Ban</span>
+                        <span class="punishment p-warn">Warning → Kick → Ban</span>
                     </div>
-                    <p style="color: var(--muted); font-size: 0.95rem;">Failure to fear for your life or ignoring realistic consequences (e.g., self-reviving during active scenes or ignoring major collisions).</p>
+                    <p>Failing to fear for your life. Examples: ignoring guns pointed at you, self-reviving during active scenes, or walking away from major accidents unharmed.</p>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-header">
+                        <span class="rule-title">Staff Evasion (LTAP)</span>
+                        <span class="punishment p-ban">Ban</span>
+                    </div>
+                    <p>Leaving the server during an active scene or staff situation to avoid punishment.</p>
                 </div>
             </section>
 
             <section id="driving">
-                <h2>Driving & Realism</h2>
+                <h2>Driving Standards</h2>
                 <div class="rule-item">
-                    <div class="rule-header"><span class="rule-title">Non-Realistic Operation</span></div>
-                    <p style="color: var(--muted); font-size: 0.95rem;">Off-roading in supercars or driving 200MPH through heavy pedestrian areas without reason is prohibited.</p>
-                    <p style="color: var(--white); font-weight: 700; font-size: 0.9rem; margin-top: 15px;">Pursuit Limit: Driving over 250 MPH during 10-80 scenarios is prohibited to maintain LEO engagement balance.</p>
+                    <div class="rule-header">
+                        <span class="rule-title">Unrealistic / GTA Driving</span>
+                        <span class="punishment p-warn">Warning → Temp Ban</span>
+                    </div>
+                    <p>Driving 300MPH down Joshua, off-roading lowriders, or driving without care for life.</p>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-header">
+                        <span class="rule-title">10-80 Speed Limit (250 MPH)</span>
+                        <span class="punishment p-warn">Scene 22'ed + Warning</span>
+                    </div>
+                    <p>Driving over 250 MPH in a pursuit ruins balance for LEO. Disciplinary action will follow.</p>
                 </div>
             </section>
 
-            <section id="appeals">
-                <h2>Appeals</h2>
+            <section id="interaction">
+                <h2>Player Interactions</h2>
                 <div class="rule-item">
-                    <div class="rule-header">
-                        <span class="rule-title">Second Chance Policy</span>
-                    </div>
-                    <p style="color: var(--muted); font-size: 0.95rem;">Appeals are handled via Discord tickets. Most players are eligible for two "free" unbans. However, bans involving slurs or OOC threats are <u>non-appealable</u>.</p>
+                    <p><strong>NLR (New Life Rule):</strong> If you die, you lose all memory of previous events. You cannot return to the scene for 15 minutes.</p>
+                    <p><strong>Meta-Gaming:</strong> Using OOC info for an in-game advantage is strictly prohibited.</p>
+                    <p><strong>Cop Baiting:</strong> Purposely committing crimes to initiate chases without RP reason is prohibited.</p>
+                    <p><strong>Scene Interference:</strong> You cannot interfere with ongoing LEO arrests or traffic stops.</p>
+                    <p><strong>Powergaming:</strong> Using game mechanics to gain an unrealistic advantage or glitching out of scenarios.</p>
+                </div>
+            </section>
+
+            <section id="policies">
+                <h2>Policies & Support</h2>
+                <div class="rule-item">
+                    <p><strong>Second Chance Policy:</strong> Appeals are eligible for two unbans. **Bans for Hard-R slurs or KYS threats are never eligible for appeal.**</p>
+                    <p><strong>Peacetime:</strong> While active, all RP must be passive. No shooting allowed.</p>
+                    <p><strong>Donation Support:</strong> Enhancements are available via Tebex. DM Marley or Lamb with proof of purchase.</p>
                 </div>
             </section>
         </main>
     </div>
 
-    <footer style="text-align: center; padding: 60px; color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;">
+    <footer style="text-align: center; padding: 60px; color: var(--muted); font-size: 0.7rem; text-transform: uppercase;">
         &copy; 2026 Tropical Roleplay • Built for the Community
     </footer>
 
