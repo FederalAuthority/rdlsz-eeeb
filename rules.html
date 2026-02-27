@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules & Regulations | Tropical Roleplay</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap');
+
+        :root {
+            --blue: #3b82f6;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg: #020617;
+            --card: rgba(15, 23, 42, 0.7);
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; transition: all 0.3s ease; }
+        
+        body { 
+            margin: 0; background-color: var(--bg); color: var(--text); 
+            font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6;
+        }
+
+        /* Immersive Background */
+        .full-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.95)), 
+                        url('https://cdn.discordapp.com/attachments/1472741931258744854/1473043718549536988/image.png');
+            background-size: cover; background-position: center;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 25px 6%;
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(15px);
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 1000;
+        }
+        .logo { font-family: 'Space Grotesk'; font-size: 1.2rem; letter-spacing: 4px; color: var(--blue); text-transform: uppercase; }
+        nav a { color: var(--muted); text-decoration: none; font-weight: 700; margin-left: 25px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+        nav a:hover { color: white; }
+
+        /* Layout */
+        .wrapper { display: grid; grid-template-columns: 280px 1fr; max-width: 1300px; margin: 120px auto 50px; gap: 60px; padding: 0 40px; }
+
+        /* Sidebar Navigation */
+        .sidebar { position: sticky; top: 120px; height: fit-content; }
+        .sidebar h4 { text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; color: var(--blue); margin-bottom: 25px; font-weight: 800; }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar li { margin-bottom: 15px; }
+        .sidebar a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+        .sidebar a:hover { color: var(--blue); padding-left: 8px; }
+
+        /* Content Area */
+        .content section { margin-bottom: 80px; animation: slideUp 0.8s ease forwards; }
+        h1 { font-family: 'Space Grotesk'; font-size: 3.5rem; margin-bottom: 10px; letter-spacing: -2px; }
+        h2 { font-family: 'Space Grotesk'; font-size: 1.8rem; color: var(--blue); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-top: 40px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Rule Cards */
+        .rule-item { 
+            background: var(--card); backdrop-filter: blur(10px);
+            padding: 30px; border-radius: 20px; 
+            margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); 
+        }
+        .rule-item:hover { border-color: var(--blue); transform: translateX(10px); background: rgba(59, 130, 246, 0.05); }
+        
+        .rule-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .rule-title { font-weight: 800; font-size: 1.1rem; color: white; font-family: 'Space Grotesk'; }
+        
+        .punishment { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; letter-spacing: 1px; }
+        .p-ban { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+        .p-warn { background: rgba(245, 158, 11, 0.1); color: var(--warning); border: 1px solid var(--warning); }
+
+        /* Callout Box */
+        .callout { 
+            background: rgba(59, 130, 246, 0.1); padding: 30px; 
+            border-radius: 20px; margin-bottom: 40px; border: 1px solid var(--blue);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 1000px) {
+            .wrapper { grid-template-columns: 1fr; margin-top: 100px; }
+            .sidebar { display: none; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="full-bg"></div>
+
+    <nav>
+        <div class="logo">TROPICAL<span style="color:white">RP</span></div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="departments.html">Agencies</a>
+            <a href="staff.html">Staff</a>
+            <a href="https://discord.gg/GtRJAxcUDR" style="color: var(--blue)">Join Discord</a>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <aside class="sidebar">
+            <h4>Directives</h4>
+            <ul>
+                <li><a href="#conduct">Zero Tolerance</a></li>
+                <li><a href="#general">General Conduct</a></li>
+                <li><a href="#driving">Driving Standards</a></li>
+                <li><a href="#interaction">Interactions</a></li>
+                <li><a href="#discord">Discord Rules</a></li>
+                <li><a href="#appeals">Appeals</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <section id="intro">
+                <p style="color: var(--blue); font-weight: 800; letter-spacing: 5px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 0;">Code of Conduct</p>
+                <h1>RULES & <span style="color:var(--blue)">STANDARDS</span></h1>
+                <p style="color:var(--muted); font-size: 1.1rem; max-width: 700px;">Welcome to Tropical RP. Our community is built on mutual respect and high-standard roleplay. Staff maintain final authority on all rulings.</p>
+                
+                <div class="callout">
+                    <strong style="color: var(--blue); text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem;">Operational Support</strong><br>
+                    <p style="margin: 10px 0 0 0; font-size: 0.95rem;">Use <code>/calladmin</code> in-game for immediate assistance. Reports require valid video evidence to be actionable by Internal Affairs.</p>
+                </div>
+            </section>
+
+            <section id="conduct">
+                <h2>Zero Tolerance</h2>
+                
+                <div class="rule-item">
+                    <div class="rule-header">
+                        <span class="rule-title">Discrimination & Slurs</span>
+                        <span class="punishment p-ban">Permanent Ban</span>
+                    </div>
+                    <p style="color: var(--muted); font-size: 0.95rem;">Racism, homophobia, or hate speech of any kind is strictly prohibited. This includes slurs (Hard ER). Soft 'a' is permitted only within organic RP; excessive use is punishable.</p>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-header">
+                        <span class="rule-title">Out-of-Character Threats</span>
+                        <span class="punishment p-ban">Permanent Ban</span>
+                    </div>
+                    <p style="color: var(--muted); font-size: 0.95rem;">Includes DOX, DDOS, death threats, or encouraging self-harm. This policy extends to all server-affiliated platforms.</p>
+                </div>
+            </section>
+
+            <section id="general">
+                <h2>General Violations</h2>
+
+                <div class="rule-item">
+                    <div class="rule-header">
+                        <span class="rule-title">RDM & VDM</span>
+                        <span class="punishment p-warn">Warn → Kick → Ban</span>
+                    </div>
+                    <p style="color: var(--muted); font-size: 0.95rem;">Executing players or using vehicles as weapons without valid RP escalation. Mass RDM (3+) results in an immediate permanent ban.</p>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-header">
+                        <span class="rule-title">Fail RP / Value of Life</span>
+                        <span class="punishment p-warn">Warning → Ban</span>
+                    </div>
+                    <p style="color: var(--muted); font-size: 0.95rem;">Failure to fear for your life or ignoring realistic consequences (e.g., self-reviving during active scenes or ignoring major collisions).</p>
+                </div>
+            </section>
+
+            <section id="driving">
+                <h2>Driving & Realism</h2>
+                <div class="rule-item">
+                    <div class="rule-header"><span class="rule-title">Non-Realistic Operation</span></div>
+                    <p style="color: var(--muted); font-size: 0.95rem;">Off-roading in supercars or driving 200MPH through heavy pedestrian areas without reason is prohibited.</p>
+                    <p style="color: var(--white); font-weight: 700; font-size: 0.9rem; margin-top: 15px;">Pursuit Limit: Driving over 250 MPH during 10-80 scenarios is prohibited to maintain LEO engagement balance.</p>
+                </div>
+            </section>
+
+            <section id="appeals">
+                <h2>Appeals</h2>
+                <div class="rule-item">
+                    <div class="rule-header">
+                        <span class="rule-title">Second Chance Policy</span>
+                    </div>
+                    <p style="color: var(--muted); font-size: 0.95rem;">Appeals are handled via Discord tickets. Most players are eligible for two "free" unbans. However, bans involving slurs or OOC threats are <u>non-appealable</u>.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer style="text-align: center; padding: 60px; color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;">
+        &copy; 2026 Tropical Roleplay • Built for the Community
+    </footer>
+
+</body>
+</html>
