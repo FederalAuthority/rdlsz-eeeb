@@ -411,40 +411,9 @@
 
             saveApplicationLocally(application);
 
-            const webhook = "https://discord.com/api/webhooks/1476796613510041691/5MnB4FT-DQsMExiuGVrLgen6nS-zZR645yF8rZjBWWC2Qci--2axMMCVvSdyAXbwV8UT";
-
-            const content = {
-                username: "Recruitment Bot",
-                embeds: [{
-                    title: `New ${dept} Application`,
-                    color: dept === "LAPD" ? 2123412 : 15105570,
-                    fields: [
-                        { name: "Discord", value: discord, inline: true },
-                        { name: "Age", value: age, inline: true },
-                        { name: "Experience", value: experience },
-                        { name: "Q1: Why us?", value: q1 },
-                        { name: "Q2: Why you?", value: q2 },
-                        { name: "Q3: Strengths/Weaks", value: q3 },
-                        { name: "Q4: Duties", value: q4 },
-                        { name: "Q5: Protocol", value: q5 },
-                        { name: "Q6: Traffic Stop", value: q6 },
-                        { name: "Q7: Bank Robbery", value: q7 }
-                    ]
-                }]
-            };
-
-            fetch(webhook, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(content) })
-            .then(() => {
-                alert("Application Sent!");
-                document.getElementById('leoApp').reset();
-                updateLabels();
-            })
-            .catch(() => {
-                // Even if webhook fails, application is still stored locally
-                alert("Application saved locally, but Discord webhook failed.");
-                document.getElementById('leoApp').reset();
-                updateLabels();
-            });
+            alert("Application Sent!");
+            document.getElementById('leoApp').reset();
+            updateLabels();
         });
 
         document.getElementById('staffApp').addEventListener('submit', function(e) {
@@ -473,42 +442,8 @@
 
             saveStaffApplicationLocally(staffApplication);
 
-            const webhook = "YOUR_DISCORD_WEBHOOK_URL_HERE";
-
-            const content = {
-                username: "Staff Recruitment Bot",
-                embeds: [{
-                    title: "New Staff Application",
-                    color: 0x3b82f6,
-                    fields: [
-                        { name: "Discord Username", value: staffApplication.discordUsername, inline: true },
-                        { name: "Discord ID", value: staffApplication.discordId, inline: true },
-                        { name: "Date of Birth", value: staffApplication.dob || "N/A", inline: true },
-                        { name: "Can Record?", value: staffApplication.canRecord || "N/A", inline: true },
-                        { name: "Good Standing?", value: staffApplication.goodStanding || "N/A", inline: true },
-                        { name: "Activity Level (1-10)", value: staffApplication.activityLevel || "N/A", inline: true },
-                        { name: "Previous Staff Experience", value: staffApplication.prevExperience || "N/A" },
-                        { name: "Why Join Staff?", value: staffApplication.whyJoin || "N/A" },
-                        { name: "Why You?", value: staffApplication.whyYou || "N/A" },
-                        { name: "Understands Result Policy?", value: staffApplication.understandsResults || "N/A", inline: true },
-                        { name: "Agrees to Staff Policy?", value: staffApplication.agreePolicy || "N/A", inline: true },
-                        { name: "Issues with Taking Orders?", value: staffApplication.issuesWithOrders || "N/A", inline: true },
-                        { name: "Can Be Active?", value: staffApplication.canBeActive || "N/A", inline: true },
-                        { name: "Dedication Level (1-10)", value: staffApplication.dedicationLevel || "N/A", inline: true },
-                        { name: "Agrees to Long Policy?", value: staffApplication.agreeLongPolicy || "N/A", inline: true }
-                    ]
-                }]
-            };
-
-            fetch(webhook, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(content) })
-            .then(() => {
-                alert("Staff Application Sent!");
-                document.getElementById('staffApp').reset();
-            })
-            .catch(() => {
-                alert("Staff application saved locally, but Discord webhook failed.");
-                document.getElementById('staffApp').reset();
-            });
+            alert("Staff Application Sent!");
+            document.getElementById('staffApp').reset();
         });
     </script>
 </body>
