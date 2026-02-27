@@ -26,10 +26,158 @@
         .btn { padding: 8px 15px; border-radius: 6px; border: none; font-weight: 800; cursor: pointer; font-size: 0.7rem; }
         .btn-view { background: rgba(59, 130, 246, 0.1); color: var(--blue); }
         .btn-kick { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+
+        /* Login overlay */
+        .login-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top, rgba(59,130,246,0.35), transparent 55%), rgba(2,6,23,0.94);
+            z-index: 10;
+        }
+        .login-card {
+            background: #020617;
+            border-radius: 24px;
+            padding: 40px 32px;
+            width: 100%;
+            max-width: 420px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+        }
+        .login-card h1 {
+            font-family: 'Space Grotesk';
+            margin: 0 0 6px 0;
+        }
+        .login-card p {
+            margin: 0 0 24px 0;
+            color: #9ca3af;
+            font-size: 0.85rem;
+        }
+        .field-label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .input, .select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #1e293b;
+            background: #020617;
+            color: white;
+            font-family: inherit;
+            margin-bottom: 14px;
+            font-size: 0.9rem;
+        }
+        .input:focus, .select:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: var(--blue);
+            color: white;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+        .login-btn:hover {
+            background: #2563eb;
+        }
+        .login-error {
+            color: var(--danger);
+            font-size: 0.75rem;
+            margin-top: 6px;
+            min-height: 16px;
+        }
+
+        /* Modal */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+        }
+        .modal {
+            background: #020617;
+            border-radius: 24px;
+            padding: 28px 24px;
+            max-width: 520px;
+            width: 100%;
+            border: 1px solid rgba(148,163,184,0.35);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal h2 {
+            font-family: 'Space Grotesk';
+            margin-top: 0;
+            margin-bottom: 4px;
+        }
+        .modal dl {
+            margin: 16px 0 0 0;
+        }
+        .modal dt {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            margin-top: 10px;
+        }
+        .modal dd {
+            margin: 4px 0 0 0;
+            font-size: 0.9rem;
+        }
+        .modal-close {
+            margin-top: 18px;
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid #4b5563;
+            background: transparent;
+            color: #e5e7eb;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <aside>
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-card">
+            <p style="letter-spacing: 5px; text-transform: uppercase; font-size: 0.7rem; color: var(--blue); font-weight: 800; margin-bottom: 4px;">Command Access</p>
+            <h1>Department <span style="color:var(--blue)">Login</span></h1>
+            <p>Restricted to department command and server ownership. Use your department key to access the recruitment queue.</p>
+            <form id="loginForm">
+                <label class="field-label" for="deptSelect">Department</label>
+                <select id="deptSelect" class="select" required>
+                    <option value="LAPD">Los Angeles Police Department</option>
+                    <option value="LASD">Los Angeles Sheriff's Department</option>
+                    <option value="ADMIN">Global Staff View</option>
+                </select>
+
+                <label class="field-label" for="accessKey">Access Key</label>
+                <input id="accessKey" type="password" class="input" placeholder="Enter department key" required />
+
+                <button type="submit" class="login-btn">Enter Panel</button>
+                <div id="loginError" class="login-error"></div>
+            </form>
+        </div>
+    </div>
+
+    <aside id="sidebar" style="display:none;">
         <h2 style="font-family: 'Space Grotesk'; letter-spacing: 2px;">STAFF<span style="color:var(--blue)">WATCH</span></h2>
         <a href="#" class="nav-item active">Dashboard</a>
         <a href="#" class="nav-item">Recruitment Queue</a>
@@ -37,43 +185,278 @@
         <a href="index.html" class="nav-item" style="margin-top:50px; color:var(--danger)">Logout</a>
     </aside>
 
-    <main>
+    <main id="mainPanel" style="display:none;">
         <div class="header">
             <h1 style="font-family:'Space Grotesk'">Admin <span style="color:var(--blue)">Dashboard</span></h1>
             <div style="text-align:right">
                 <div style="font-size:0.7rem; color:#64748b">Current Session</div>
-                <strong>Prada (Owner)</strong>
+                <strong id="sessionLabel">Unknown</strong>
             </div>
         </div>
 
         <div class="grid">
-            <div class="card"><span>Players Online</span><h2 style="margin:5px 0">42 / 64</h2></div>
-            <div class="card"><span>Server Uptime</span><h2 style="margin:5px 0">12d 4h</h2></div>
-            <div class="card"><span>Pending Apps</span><h2 style="margin:5px 0; color:var(--blue)">7</h2></div>
+            <div class="card">
+                <span>Players Online</span>
+                <h2 style="margin:5px 0">42 / 64</h2>
+            </div>
+            <div class="card">
+                <span>Server Uptime</span>
+                <h2 style="margin:5px 0">12d 4h</h2>
+            </div>
+            <div class="card">
+                <span>Pending Apps</span>
+                <h2 id="pendingCount" style="margin:5px 0; color:var(--blue)">0</h2>
+            </div>
         </div>
 
         <div class="card">
             <h4 style="margin:0">Active Recruitment Queue</h4>
             <table>
                 <thead>
-                    <tr><th>User</th><th>Department</th><th>Age</th><th>Actions</th></tr>
+                    <tr><th>User</th><th>Department</th><th>Age</th><th>Status</th><th>Actions</th></tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>John_Doe</strong></td>
-                        <td>LAPD</td>
-                        <td>19</td>
-                        <td><button class="btn btn-view">VIEW APP</button> <button class="btn btn-kick">DENY</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Deputy_Steve</strong></td>
-                        <td>LASD</td>
-                        <td>22</td>
-                        <td><button class="btn btn-view">VIEW APP</button> <button class="btn btn-kick">DENY</button></td>
-                    </tr>
+                <tbody id="queueBody">
                 </tbody>
             </table>
         </div>
     </main>
+
+    <div id="modalBackdrop" class="modal-backdrop">
+        <div class="modal">
+            <h2 id="modalTitle">Application</h2>
+            <p style="font-size:0.8rem; color:#9ca3af; margin-top:0;" id="modalMeta"></p>
+            <dl id="modalDetails"></dl>
+            <button class="modal-close" type="button" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        const ACCESS_KEYS = {
+            LAPD: 'lapd-command-key',
+            LASD: 'lasd-command-key',
+            ADMIN: 'owner-global-key'
+        };
+
+        const CORE_BOT_API_URL = 'http://YOUR_VPS_IP_OR_DOMAIN:3000/api/leo-accept';
+        const REQUIRE_SECOND_STAGE_REVIEW = true;
+
+        let currentScope = null;
+
+        function formatTimestamp(iso) {
+            try {
+                const d = new Date(iso);
+                return d.toLocaleString();
+            } catch {
+                return iso || 'Unknown';
+            }
+        }
+
+        function loadApplicationsForScope() {
+            const key = 'leoApplications';
+            const all = JSON.parse(localStorage.getItem(key) || '[]');
+            const scope = currentScope;
+
+            const apps = all.filter(app => {
+                if (!scope) return false;
+                if (scope === 'ADMIN') return true;
+                return app.dept === scope;
+            });
+
+            const tbody = document.getElementById('queueBody');
+            tbody.innerHTML = '';
+
+            let pending = 0;
+
+            if (!apps.length) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 5;
+                cell.style.color = '#6b7280';
+                cell.textContent = 'No applications found for this scope.';
+                row.appendChild(cell);
+                tbody.appendChild(row);
+                document.getElementById('pendingCount').textContent = '0';
+                return;
+            }
+
+            apps.forEach(app => {
+                if (app.status === 'pending') pending++;
+
+                const tr = document.createElement('tr');
+
+                const userTd = document.createElement('td');
+                userTd.innerHTML = `<strong>${app.discord || 'Unknown'}</strong>`;
+
+                const deptTd = document.createElement('td');
+                deptTd.textContent = app.dept || '-';
+
+                const ageTd = document.createElement('td');
+                ageTd.textContent = app.age || '-';
+
+                const statusTd = document.createElement('td');
+                statusTd.textContent = (app.status || 'pending').toUpperCase();
+                statusTd.style.fontSize = '0.7rem';
+                statusTd.style.fontWeight = '800';
+                if (app.status === 'accepted') {
+                    statusTd.style.color = '#22c55e';
+                } else if (app.status === 'denied') {
+                    statusTd.style.color = '#f97316';
+                } else {
+                    statusTd.style.color = '#e5e7eb';
+                }
+
+                const actionsTd = document.createElement('td');
+
+                const viewBtn = document.createElement('button');
+                viewBtn.className = 'btn btn-view';
+                viewBtn.textContent = 'VIEW APP';
+                viewBtn.onclick = () => openModal(app);
+
+                const acceptBtn = document.createElement('button');
+                acceptBtn.className = 'btn';
+                acceptBtn.style.background = 'rgba(34,197,94,0.12)';
+                acceptBtn.style.color = '#22c55e';
+                acceptBtn.style.marginLeft = '6px';
+                acceptBtn.textContent = 'ACCEPT';
+                acceptBtn.onclick = () => updateApplicationStatus(app.id, 'accepted');
+
+                const denyBtn = document.createElement('button');
+                denyBtn.className = 'btn btn-kick';
+                denyBtn.style.marginLeft = '6px';
+                denyBtn.textContent = 'DENY';
+                denyBtn.onclick = () => updateApplicationStatus(app.id, 'denied');
+
+                actionsTd.appendChild(viewBtn);
+                actionsTd.appendChild(acceptBtn);
+                actionsTd.appendChild(denyBtn);
+
+                tr.appendChild(userTd);
+                tr.appendChild(deptTd);
+                tr.appendChild(ageTd);
+                tr.appendChild(statusTd);
+                tr.appendChild(actionsTd);
+
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('pendingCount').textContent = String(pending);
+        }
+
+        function sendToCoreBot(app, action) {
+            if (!CORE_BOT_API_URL) return;
+
+            const payload = {
+                source: 'leo_application',
+                action,
+                requiresSecondStageReview: REQUIRE_SECOND_STAGE_REVIEW,
+                department: app.dept,
+                discordUsername: app.discord,
+                age: app.age,
+                experience: app.experience,
+                submittedAt: app.submittedAt,
+                localId: app.id,
+                answers: {
+                    q1: app.q1,
+                    q2: app.q2,
+                    q3: app.q3,
+                    q4: app.q4,
+                    q5: app.q5,
+                    q6: app.q6,
+                    q7: app.q7
+                }
+            };
+
+            fetch(CORE_BOT_API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).catch(err => {
+                console.error('Failed to notify core bot', err);
+            });
+        }
+
+        function updateApplicationStatus(id, status) {
+            const key = 'leoApplications';
+            const all = JSON.parse(localStorage.getItem(key) || '[]');
+            const idx = all.findIndex(app => String(app.id) === String(id));
+            if (idx === -1) return;
+            all[idx].status = status;
+            localStorage.setItem(key, JSON.stringify(all));
+
+            if (status === 'accepted') {
+                sendToCoreBot(all[idx], 'accepted');
+            }
+
+            loadApplicationsForScope();
+        }
+
+        function openModal(app) {
+            document.getElementById('modalTitle').textContent = `${app.dept || ''} Application`;
+            document.getElementById('modalMeta').textContent = `Discord: ${app.discord || 'Unknown'} • Submitted: ${formatTimestamp(app.submittedAt)}`;
+
+            const dl = document.getElementById('modalDetails');
+            dl.innerHTML = '';
+
+            const fields = [
+                ['Age', app.age],
+                ['Experience', app.experience],
+                ['Q1: Why us?', app.q1],
+                ['Q2: Why you?', app.q2],
+                ['Q3: Strengths & Weaknesses', app.q3],
+                ['Q4: Duties', app.q4],
+                ['Q5: Protocol', app.q5],
+                ['Q6: Traffic Stop', app.q6],
+                ['Q7: Bank Robbery', app.q7]
+            ];
+
+            fields.forEach(([label, value]) => {
+                const dt = document.createElement('dt');
+                dt.textContent = label;
+                const dd = document.createElement('dd');
+                dd.textContent = value || '-';
+                dl.appendChild(dt);
+                dl.appendChild(dd);
+            });
+
+            document.getElementById('modalBackdrop').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modalBackdrop').style.display = 'none';
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const dept = document.getElementById('deptSelect').value;
+            const key = document.getElementById('accessKey').value.trim();
+            const errorEl = document.getElementById('loginError');
+
+            if (ACCESS_KEYS[dept] && key === ACCESS_KEYS[dept]) {
+                currentScope = dept;
+                sessionStorage.setItem('panelScope', dept);
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('sidebar').style.display = 'block';
+                document.getElementById('mainPanel').style.display = 'block';
+                document.getElementById('sessionLabel').textContent =
+                    dept === 'ADMIN' ? 'Global Staff (Owner)' : `${dept} Command`;
+                loadApplicationsForScope();
+            } else {
+                errorEl.textContent = 'Invalid key for selected department.';
+            }
+        });
+
+        // Restore existing session if present
+        (function initFromSession() {
+            const savedScope = sessionStorage.getItem('panelScope');
+            if (!savedScope || !ACCESS_KEYS[savedScope]) return;
+            currentScope = savedScope;
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('sidebar').style.display = 'block';
+            document.getElementById('mainPanel').style.display = 'block';
+            document.getElementById('sessionLabel').textContent =
+                savedScope === 'ADMIN' ? 'Global Staff (Owner)' : `${savedScope} Command`;
+            loadApplicationsForScope();
+        })();
+    </script>
 </body>
 </html>
