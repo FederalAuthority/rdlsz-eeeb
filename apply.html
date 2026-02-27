@@ -20,6 +20,50 @@
         h1 { font-family: 'Space Grotesk'; font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: -1px; }
         .subtitle { color: #64748b; margin-bottom: 30px; font-size: 0.9rem; }
 
+        .journey-choice {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin: 30px 0 40px 0;
+        }
+        .journey-card {
+            background: rgba(15,23,42,0.8);
+            border-radius: 18px;
+            border: 1px solid rgba(148,163,184,0.35);
+            padding: 18px 18px 20px 18px;
+            cursor: pointer;
+            text-align: left;
+        }
+        .journey-card:hover {
+            border-color: var(--blue);
+            box-shadow: 0 12px 30px rgba(15,23,42,0.8);
+            transform: translateY(-4px);
+        }
+        .journey-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #9ca3af;
+            font-weight: 700;
+        }
+        .journey-title {
+            font-family: 'Space Grotesk';
+            font-size: 1.2rem;
+            margin: 4px 0 4px 0;
+        }
+        .journey-desc {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+        .journey-note {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        .hidden-section {
+            display: none;
+        }
+
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
         label { display: block; font-size: 0.7rem; font-weight: 800; color: var(--blue); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
         
@@ -36,15 +80,64 @@
             transition: 0.3s ease;
         }
         .submit-btn:hover { transform: translateY(-3px); background: #2563eb; }
+
+        .section-title {
+            font-family: 'Space Grotesk';
+            font-size: 1.4rem;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        .section-subtitle {
+            color: #9ca3af;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+        .divider {
+            margin: 40px 0 30px 0;
+            border: 0;
+            border-top: 1px solid rgba(148,163,184,0.4);
+        }
+        .pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(148,163,184,0.08);
+            color: #9ca3af;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
     <div class="full-bg"></div>
     <div class="apply-box">
-        <h1>LEO <span style="color:var(--blue)">Recruitment</span></h1>
-        <p class="subtitle">Official application for LAPD and LASD departments.</p>
+        <p style="letter-spacing: 6px; text-transform: uppercase; color: var(--blue); font-weight: 800; font-size: 0.7rem; margin: 0 0 6px 0;">Recruitment Portal</p>
+        <h1>Choose Your <span style="color:var(--blue)">Journey</span></h1>
+        <p class="subtitle">Start your path as a line officer or join the team that keeps the streets running behind the scenes.</p>
 
-        <form id="leoApp">
+        <div class="journey-choice">
+            <button type="button" class="journey-card" onclick="chooseJourney('leo')">
+                <div class="journey-label">Application Track</div>
+                <div class="journey-title">Law Enforcement</div>
+                <div class="journey-desc">Apply for LAPD or LASD and serve on the frontlines of Tropical RP.</div>
+            </button>
+            <button type="button" class="journey-card" onclick="chooseJourney('staff')" style="background: radial-gradient(circle at top, rgba(59,130,246,0.1), rgba(15,23,42,0.9));">
+                <div class="journey-label">Application Track</div>
+                <div class="journey-title">Staff Team</div>
+                <div class="journey-desc">Join moderation and support staff to protect the community and enforce standards.</div>
+            </button>
+        </div>
+
+        <p class="journey-note">Select a journey above to reveal the matching application.</p>
+
+        <div id="leo-container" class="hidden-section">
+            <h2 id="leo-section" class="section-title" style="margin-top: 20px;">Law Enforcement Application</h2>
+            <p class="subtitle" style="margin-top: 4px;">Official application for LAPD and LASD departments.</p>
+
+            <form id="leoApp">
             <div class="grid">
                 <div>
                     <label>Agency Selection</label>
@@ -91,8 +184,151 @@
             <label>Q7: Suspect threatening to rob a bank with a weapon?</label>
             <textarea id="q7" required></textarea>
 
-            <button type="submit" class="submit-btn">SUBMIT TO COMMAND STAFF</button>
+                <button type="submit" class="submit-btn">SUBMIT TO COMMAND STAFF</button>
+            </form>
+        </div>
+
+        <hr class="divider">
+
+        <div id="staff-container" class="hidden-section">
+        <div id="staff-section">
+            <span class="pill">Staff Team</span>
+            <h2 class="section-title">Tropical Roleplay Staff Application</h2>
+            <p class="section-subtitle">
+                We appreciate your interest in becoming a part of our Staff Team. Before applying, ensure you meet the
+                requirements and understand the guidelines below.
+            </p>
+
+            <p class="section-subtitle" style="margin-bottom: 10px; font-weight:600;">Requirements</p>
+            <ul class="section-subtitle" style="padding-left: 18px; margin-top: 0;">
+                <li>You must be 14 or older.</li>
+                <li>Prior staffing experience on servers is a plus.</li>
+                <li>You must be able to uphold a professional and mature attitude.</li>
+                <li>You must not currently hold another position on another server.</li>
+                <li>You must have a clean punishment record (no punishments in the last 2 weeks).</li>
+                <li>You must be active within our server and community.</li>
+            </ul>
+
+            <p class="section-subtitle" style="margin-bottom: 10px; font-weight:600;">Guidelines</p>
+            <ul class="section-subtitle" style="padding-left: 18px; margin-top: 0;">
+                <li>Put as much effort and detail into your answers as possible.</li>
+                <li>Learn and memorize our rules to better answer scenario questions.</li>
+                <li>Be honest; lying on your application will get you nowhere.</li>
+                <li>Do not ask staff about the status of your application while it is under review.</li>
+            </ul>
+
+            <p class="section-subtitle" style="margin-top: 10px;">
+                We wish you the best of luck on your application!
+            </p>
+        </div>
+
+        <form id="staffApp">
+            <h3 class="section-title" style="margin-top: 30px;">Section 2 of 5 &mdash; Initial Questions</h3>
+
+            <label>What is your Discord Username?</label>
+            <input type="text" id="staffDiscord" required>
+
+            <label>What is your Discord ID?</label>
+            <input type="text" id="staffDiscordId" placeholder="Example: 535913245387522050" required>
+
+            <label>What is your date of birth?</label>
+            <input type="text" id="staffDob" placeholder="Month, Day, Year" required>
+
+            <div class="grid">
+                <div>
+                    <label>Can you record videos with your current computer?</label>
+                    <select id="staffCanRecord" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Are you in good standing within the community?</label>
+                    <select id="staffGoodStanding" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <label>How active can you be? (1-10)</label>
+            <input type="number" id="staffActivityLevel" min="1" max="10" placeholder="1 = not that active, 10 = really active" required>
+
+            <h3 class="section-title">Section 3 of 5 &mdash; General Questions</h3>
+
+            <label>Have you had any previous staff experience? <span style="color:#64748b; font-size:0.75rem;">(40+ words)</span></label>
+            <textarea id="staffPrevExperience" required></textarea>
+
+            <label>Why are you interested in joining our staff team? <span style="color:#64748b; font-size:0.75rem;">(40+ words)</span></label>
+            <textarea id="staffWhyJoin" required></textarea>
+
+            <label>Why should we accept you over other applicants? <span style="color:#64748b; font-size:0.75rem;">(40+ words)</span></label>
+            <textarea id="staffWhyYou" required></textarea>
+
+            <h3 class="section-title">Section 4 of 5 &mdash; Final Section</h3>
+
+            <div class="grid">
+                <div>
+                    <label>Do you understand that asking about your application results will result in rejection?</label>
+                    <select id="staffUnderstandsResults" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Do you agree to abide by our Staff Policy and all Rules?</label>
+                    <select id="staffAgreePolicy" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div>
+                    <label>Do you have problems listening or taking orders from higher-ups or based on sex/gender/orientation?</label>
+                    <select id="staffIssuesWithOrders" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Can you bring a full amount of activity to the Staff Team and community?</label>
+                    <select id="staffCanBeActive" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Maybe">Maybe</option>
+                    </select>
+                </div>
+            </div>
+
+            <label>How dedicated will you be? (1-10)</label>
+            <input type="number" id="staffDedicationLevel" min="1" max="10" placeholder="1 = not that dedicated, 10 = really dedicated" required>
+
+            <h3 class="section-title">Section 5 of 5 &mdash; Staff Policy Information & Check-off</h3>
+
+            <p class="section-subtitle">
+                Being a Staff Member for Tropical RP consists of professionalism, maturity, and respect. Staff are held to a higher
+                standard to protect the community and enforce the rules to ensure everyone can enjoy the server. Dedication,
+                activity, and conflict resolution are critical parts of this role.
+            </p>
+
+            <label>Do you agree to this Staff Policy?</label>
+            <select id="staffAgreeLongPolicy" required>
+                <option value="">Select</option>
+                <option value="I Do Agree.">I Do Agree.</option>
+                <option value="I Don't Agree.">I Don't Agree.</option>
+            </select>
+
+            <button type="submit" class="submit-btn">SUBMIT STAFF APPLICATION</button>
         </form>
+        </div>
     </div>
 
     <script>
@@ -104,10 +340,78 @@
             document.getElementById('l5').innerText = `Q5: Fellow ${isLAPD ? 'officer' : 'deputy'} not following protocol?`;
         }
 
+        function saveApplicationLocally(app) {
+            try {
+                const key = 'leoApplications';
+                const existing = JSON.parse(localStorage.getItem(key) || '[]');
+                existing.push(app);
+                localStorage.setItem(key, JSON.stringify(existing));
+            } catch (err) {
+                console.error('Failed to save application locally', err);
+            }
+        }
+
+        function saveStaffApplicationLocally(app) {
+            try {
+                const key = 'staffApplications';
+                const existing = JSON.parse(localStorage.getItem(key) || '[]');
+                existing.push(app);
+                localStorage.setItem(key, JSON.stringify(existing));
+            } catch (err) {
+                console.error('Failed to save staff application locally', err);
+            }
+        }
+
+        function chooseJourney(type) {
+            const leo = document.getElementById('leo-container');
+            const staff = document.getElementById('staff-container');
+
+            if (type === 'leo') {
+                leo.classList.remove('hidden-section');
+                staff.classList.add('hidden-section');
+                leo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (type === 'staff') {
+                staff.classList.remove('hidden-section');
+                leo.classList.add('hidden-section');
+                staff.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
         document.getElementById('leoApp').addEventListener('submit', function(e) {
             e.preventDefault();
-            const webhook = "YOUR_DISCORD_WEBHOOK_URL_HERE";
+
             const dept = document.getElementById('dept').value;
+            const discord = document.getElementById('discord').value;
+            const age = document.getElementById('age').value;
+            const experience = document.getElementById('experience').value;
+            const q1 = document.getElementById('q1').value;
+            const q2 = document.getElementById('q2').value;
+            const q3 = document.getElementById('q3').value;
+            const q4 = document.getElementById('q4').value;
+            const q5 = document.getElementById('q5').value;
+            const q6 = document.getElementById('q6').value;
+            const q7 = document.getElementById('q7').value;
+
+            const application = {
+                id: Date.now(),
+                submittedAt: new Date().toISOString(),
+                dept,
+                discord,
+                age,
+                experience,
+                q1,
+                q2,
+                q3,
+                q4,
+                q5,
+                q6,
+                q7,
+                status: 'pending'
+            };
+
+            saveApplicationLocally(application);
+
+            const webhook = "https://discord.com/api/webhooks/1476796613510041691/5MnB4FT-DQsMExiuGVrLgen6nS-zZR645yF8rZjBWWC2Qci--2axMMCVvSdyAXbwV8UT";
 
             const content = {
                 username: "Recruitment Bot",
@@ -115,22 +419,96 @@
                     title: `New ${dept} Application`,
                     color: dept === "LAPD" ? 2123412 : 15105570,
                     fields: [
-                        { name: "Discord", value: document.getElementById('discord').value, inline: true },
-                        { name: "Age", value: document.getElementById('age').value, inline: true },
-                        { name: "Experience", value: document.getElementById('experience').value },
-                        { name: "Q1: Why us?", value: document.getElementById('q1').value },
-                        { name: "Q2: Why you?", value: document.getElementById('q2').value },
-                        { name: "Q3: Strengths/Weaks", value: document.getElementById('q3').value },
-                        { name: "Q4: Duties", value: document.getElementById('q4').value },
-                        { name: "Q5: Protocol", value: document.getElementById('q5').value },
-                        { name: "Q6: Traffic Stop", value: document.getElementById('q6').value },
-                        { name: "Q7: Bank Robbery", value: document.getElementById('q7').value }
+                        { name: "Discord", value: discord, inline: true },
+                        { name: "Age", value: age, inline: true },
+                        { name: "Experience", value: experience },
+                        { name: "Q1: Why us?", value: q1 },
+                        { name: "Q2: Why you?", value: q2 },
+                        { name: "Q3: Strengths/Weaks", value: q3 },
+                        { name: "Q4: Duties", value: q4 },
+                        { name: "Q5: Protocol", value: q5 },
+                        { name: "Q6: Traffic Stop", value: q6 },
+                        { name: "Q7: Bank Robbery", value: q7 }
                     ]
                 }]
             };
 
             fetch(webhook, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(content) })
-            .then(() => alert("Application Sent!"));
+            .then(() => {
+                alert("Application Sent!");
+                document.getElementById('leoApp').reset();
+                updateLabels();
+            })
+            .catch(() => {
+                // Even if webhook fails, application is still stored locally
+                alert("Application saved locally, but Discord webhook failed.");
+                document.getElementById('leoApp').reset();
+                updateLabels();
+            });
+        });
+
+        document.getElementById('staffApp').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const staffApplication = {
+                id: Date.now(),
+                submittedAt: new Date().toISOString(),
+                discordUsername: document.getElementById('staffDiscord').value,
+                discordId: document.getElementById('staffDiscordId').value,
+                dob: document.getElementById('staffDob').value,
+                canRecord: document.getElementById('staffCanRecord').value,
+                goodStanding: document.getElementById('staffGoodStanding').value,
+                activityLevel: document.getElementById('staffActivityLevel').value,
+                prevExperience: document.getElementById('staffPrevExperience').value,
+                whyJoin: document.getElementById('staffWhyJoin').value,
+                whyYou: document.getElementById('staffWhyYou').value,
+                understandsResults: document.getElementById('staffUnderstandsResults').value,
+                agreePolicy: document.getElementById('staffAgreePolicy').value,
+                issuesWithOrders: document.getElementById('staffIssuesWithOrders').value,
+                canBeActive: document.getElementById('staffCanBeActive').value,
+                dedicationLevel: document.getElementById('staffDedicationLevel').value,
+                agreeLongPolicy: document.getElementById('staffAgreeLongPolicy').value,
+                status: 'pending'
+            };
+
+            saveStaffApplicationLocally(staffApplication);
+
+            const webhook = "YOUR_DISCORD_WEBHOOK_URL_HERE";
+
+            const content = {
+                username: "Staff Recruitment Bot",
+                embeds: [{
+                    title: "New Staff Application",
+                    color: 0x3b82f6,
+                    fields: [
+                        { name: "Discord Username", value: staffApplication.discordUsername, inline: true },
+                        { name: "Discord ID", value: staffApplication.discordId, inline: true },
+                        { name: "Date of Birth", value: staffApplication.dob || "N/A", inline: true },
+                        { name: "Can Record?", value: staffApplication.canRecord || "N/A", inline: true },
+                        { name: "Good Standing?", value: staffApplication.goodStanding || "N/A", inline: true },
+                        { name: "Activity Level (1-10)", value: staffApplication.activityLevel || "N/A", inline: true },
+                        { name: "Previous Staff Experience", value: staffApplication.prevExperience || "N/A" },
+                        { name: "Why Join Staff?", value: staffApplication.whyJoin || "N/A" },
+                        { name: "Why You?", value: staffApplication.whyYou || "N/A" },
+                        { name: "Understands Result Policy?", value: staffApplication.understandsResults || "N/A", inline: true },
+                        { name: "Agrees to Staff Policy?", value: staffApplication.agreePolicy || "N/A", inline: true },
+                        { name: "Issues with Taking Orders?", value: staffApplication.issuesWithOrders || "N/A", inline: true },
+                        { name: "Can Be Active?", value: staffApplication.canBeActive || "N/A", inline: true },
+                        { name: "Dedication Level (1-10)", value: staffApplication.dedicationLevel || "N/A", inline: true },
+                        { name: "Agrees to Long Policy?", value: staffApplication.agreeLongPolicy || "N/A", inline: true }
+                    ]
+                }]
+            };
+
+            fetch(webhook, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(content) })
+            .then(() => {
+                alert("Staff Application Sent!");
+                document.getElementById('staffApp').reset();
+            })
+            .catch(() => {
+                alert("Staff application saved locally, but Discord webhook failed.");
+                document.getElementById('staffApp').reset();
+            });
         });
     </script>
 </body>
